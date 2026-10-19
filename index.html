@@ -120,41 +120,41 @@ body[data-v="cat"] #home{display:none}
 
 <script>
 const CATS = [
-  { id: "pulsos", name: "Pulsos y Correas", desc: "Silicona, cuero, lona y metálicas", img: "https://drive.google.com/uc?export=view&id=1bAuTGUXRvvNaBT6D0p8dHfGvvg07lYDG" },
-  { id: "relojes", name: "Relojes", desc: "Análogos y digitales", img: "https://drive.google.com/uc?export=view&id=1J_02Iysq-sXpg0NbgJceMuVpHYj9nxNE" },
-  { id: "estuches", name: "Estuches y Accesorios", desc: "Organizadores de cuero y repuestos", img: "https://drive.google.com/uc?export=view&id=19obWEVLueTJW3hRsL3JUl19CUVZsoUV8" }
+  { id: "pulsos", name: "Pulsos y Correas", desc: "Silicona, cuero, lona y metálicas", img: "https://lh3.googleusercontent.com/d/1bAuTGUXRvvNaBT6D0p8dHfGvvg07lYDG" },
+  { id: "relojes", name: "Relojes", desc: "Análogos y digitales", img: "https://lh3.googleusercontent.com/d/1J_02Iysq-sXpg0NbgJceMuVpHYj9nxNE" },
+  { id: "estuches", name: "Estuches y Accesorios", desc: "Organizadores de cuero y repuestos", img: "https://lh3.googleusercontent.com/d/1wGAHS3TZk4bD6YEV5Go6wdxq-wgkg8jJ" }
 ];
 
 const DB = [
-  // PULSOS EXTRAÍDOS DE CATÁLOGO.XLSX
-  { id: "R00-001", cat: "pulsos", brand: "Armani", ref: "REF. Ax1042", desc: "Pulso Armani Exchance de plastico", price: "$110,000", img: "https://drive.google.com/uc?export=view&id=1bAuTGUXRvvNaBT6D0p8dHfGvvg07lYDG" },
-  { id: "R00-002", cat: "pulsos", brand: "Armani", ref: "Ref.AXT2006R", desc: "Pulso de silicona, smartwatch o 22mm", price: "$139,000", img: "https://drive.google.com/uc?export=view&id=1GPhVoXNk61QWwctbeVFdnoYPEoCuxBBR" },
-  { id: "R00-003", cat: "pulsos", brand: "Armani", ref: "Ref. AXLona22", desc: "Pulso de cuero lona de 22mm", price: "$110,000", img: "https://drive.google.com/uc?export=view&id=1aPrXhEKQ8hFpurFhPtrvcde7rMG_vp1N" },
-  { id: "R00-004", cat: "pulsos", brand: "Armani", ref: "Ref. AXjean22", desc: "Pulso tipo jean y cuero", price: "$110,000", img: "https://drive.google.com/uc?export=view&id=1INnR8mmrq_mR0uVEKDXIi1JCwPx6_8uw" },
-  { id: "R00-005", cat: "pulsos", brand: "Armani", ref: "Ref.AXCUE18", desc: "Pulso de cuero tamaño 18mm", price: "$110,000", img: "https://drive.google.com/uc?export=view&id=1YXQk2Iz_KObAhAWXf0E0XloWw5FcYZpk" },
-  { id: "R00-006", cat: "pulsos", brand: "Armani", ref: "Ref.AXCUE22", desc: "Pulso de cuero tamaño 22mm", price: "$110,000", img: "https://drive.google.com/uc?export=view&id=1MIBH81HEjJmzzX8ZcaAYbx4KekcHUbm7" },
-  { id: "R00-007", cat: "pulsos", brand: "Armani", ref: "Ref.AXCUE24", desc: "Pulso de cuero tamaño 24mm", price: "$110,000", img: "https://drive.google.com/uc?export=view&id=1O2c4CFo48RXNoQgn_2FNx3sEKZ-YEBWS" },
-  { id: "R00-008", cat: "pulsos", brand: "Audemars Piguet", ref: "Ref. APH114", desc: "Correa compatible AP Royal Oak", price: "$90,000", img: "https://drive.google.com/uc?export=view&id=1Be4iMSn-dxbVRMkZlCYOk0oKHkKfRH3r" },
-  { id: "R00-009", cat: "pulsos", brand: "Audemars Piguet", ref: "Ref. AP27BRO", desc: "Correa compatible con AP Royal Oak Offshore 27mm Broche", price: "$110,000", img: "https://drive.google.com/uc?export=view&id=1zTZW6PdQLoXhX--mRVPC8DrzjuhmIl7g" },
-  { id: "R00-010", cat: "pulsos", brand: "Audemars Piguet", ref: "Ref. APTOR26", desc: "Correa Compatible con reloj AP Oak Oppshore Tornillo 26mm", price: "$115,000", img: "https://drive.google.com/uc?export=view&id=1tf7XNCeQFJ23X9mjAo3p-NXYryVGPFMf" },
-  { id: "R00-011", cat: "pulsos", brand: "Audemars Piguet", ref: "Ref.AP29HEB", desc: "Correa Compatible con Royal Oak Offshore 29mm", price: "$110,000", img: "https://drive.google.com/uc?export=view&id=1AIbXWEaCwLU2VI7ojzwyt2Gck--G48qq" },
-  { id: "R00-012", cat: "pulsos", brand: "Bvlgari", ref: "Ref. BVL22", desc: "correa bvlgari 22mm negro con plateado/cobrizo", price: "$110,000", img: "https://drive.google.com/uc?export=view&id=1IOHaeMmwhXzOrXpzYsDu6x4-FtFIO26n" },
-  { id: "R00-013", cat: "pulsos", brand: "Bvlgari", ref: "Ref. BVL24", desc: "correa bvlgari 24mm negro con plateado/cobrizo", price: "", img: "https://drive.google.com/uc?export=view&id=1IOHaeMmwhXzOrXpzYsDu6x4-FtFIO26n" },
-  { id: "R00-014", cat: "pulsos", brand: "Casio", ref: "Ref. GA-100BR", desc: "Correa original de casio negro brillante", price: "$170,000", img: "https://drive.google.com/uc?export=view&id=1Rl_BvkybwFU7HPM1wAd3WmS65RhypwL3" },
-  { id: "R00-015", cat: "pulsos", brand: "Casio", ref: "Ref. GA-150DR", desc: "Correa original casio dorada", price: "$170,000", img: "https://drive.google.com/uc?export=view&id=1D9s_odQQYSkGGuV-DexEXoHctcUpNimE" },
-  { id: "R00-016", cat: "pulsos", brand: "Casio Generico", ref: "EF-550", desc: "Correa compatible con casio formula 1", price: "$45,000", img: "https://drive.google.com/uc?export=view&id=141DnfoKgTjLAiesgYeePgLCiaeU6_JVT" },
-  { id: "R00-017", cat: "pulsos", brand: "Casio Generico", ref: "GA-100NR", desc: "Correa compatible con casio Ga-100 negra con rojo por debajo", price: "$80,000", img: "https://drive.google.com/uc?export=view&id=15iuBCiIAqjxfnIcYJmGPUmAvmhiE5vNC" },
-  { id: "R00-018", cat: "pulsos", brand: "Casio Generico", ref: "PRG-270", desc: "Correa compatible con reloj Casio PRG-270", price: "$70,000", img: "https://drive.google.com/uc?export=view&id=1OMAZJBx3l2_BfxsU3-XtlCh2nyAknDuh" },
-  { id: "R00-019", cat: "pulsos", brand: "Casio Generico", ref: "G-9000", desc: "Correa compatible con reloj G-Shock G-9000 Mudman", price: "$80,000", img: "https://drive.google.com/uc?export=view&id=1m2_4GyCuNAj5L_gWW3vRDOojroNnuTrl" },
-  { id: "R00-020", cat: "pulsos", brand: "Casio Generico", ref: "EFX-520", desc: "Correa generica Casio EFX-520", price: "$90,000", img: "https://drive.google.com/uc?export=view&id=1iBLrDTwbMt9uvNKORuOS1ZYGaJE21Pon" },
+  // PULSOS EXTRAÍDOS DE CATÁLOGO.XLSX (CON ENLACES DIRECTOS LH3)
+  { id: "R00-001", cat: "pulsos", brand: "Armani", ref: "REF. Ax1042", desc: "Pulso Armani Exchance de plastico", price: "$110,000", img: "https://lh3.googleusercontent.com/d/1bAuTGUXRvvNaBT6D0p8dHfGvvg07lYDG" },
+  { id: "R00-002", cat: "pulsos", brand: "Armani", ref: "Ref.AXT2006R", desc: "Pulso de silicona, smartwatch o 22mm", price: "$139,000", img: "https://lh3.googleusercontent.com/d/1GPhVoXNk61QWwctbeVFdnoYPEoCuxBBR" },
+  { id: "R00-003", cat: "pulsos", brand: "Armani", ref: "Ref. AXLona22", desc: "Pulso de cuero lona de 22mm", price: "$110,000", img: "https://lh3.googleusercontent.com/d/1aPrXhEKQ8hFpurFhPtrvcde7rMG_vp1N" },
+  { id: "R00-004", cat: "pulsos", brand: "Armani", ref: "Ref. AXjean22", desc: "Pulso tipo jean y cuero", price: "$110,000", img: "https://lh3.googleusercontent.com/d/1INnR8mmrq_mR0uVEKDXIi1JCwPx6_8uw" },
+  { id: "R00-005", cat: "pulsos", brand: "Armani", ref: "Ref.AXCUE18", desc: "Pulso de cuero tamaño 18mm", price: "$110,000", img: "https://lh3.googleusercontent.com/d/1YXQk2Iz_KObAhAWXf0E0XloWw5FcYZpk" },
+  { id: "R00-006", cat: "pulsos", brand: "Armani", ref: "Ref.AXCUE22", desc: "Pulso de cuero tamaño 22mm", price: "$110,000", img: "https://lh3.googleusercontent.com/d/1MIBH81HEjJmzzX8ZcaAYbx4KekcHUbm7" },
+  { id: "R00-007", cat: "pulsos", brand: "Armani", ref: "Ref.AXCUE24", desc: "Pulso de cuero tamaño 24mm", price: "$110,000", img: "https://lh3.googleusercontent.com/d/1O2c4CFo48RXNoQgn_2FNx3sEKZ-YEBWS" },
+  { id: "R00-008", cat: "pulsos", brand: "Audemars Piguet", ref: "Ref. APH114", desc: "Correa compatible AP Royal Oak", price: "$90,000", img: "https://lh3.googleusercontent.com/d/1Be4iMSn-dxbVRMkZlCYOk0oKHkKfRH3r" },
+  { id: "R00-009", cat: "pulsos", brand: "Audemars Piguet", ref: "Ref. AP27BRO", desc: "Correa compatible con AP Royal Oak Offshore 27mm Broche", price: "$110,000", img: "https://lh3.googleusercontent.com/d/1zTZW6PdQLoXhX--mRVPC8DrzjuhmIl7g" },
+  { id: "R00-010", cat: "pulsos", brand: "Audemars Piguet", ref: "Ref. APTOR26", desc: "Correa Compatible con reloj AP Oak Oppshore Tornillo 26mm", price: "$115,000", img: "https://lh3.googleusercontent.com/d/1tf7XNCeQFJ23X9mjAo3p-NXYryVGPFMf" },
+  { id: "R00-011", cat: "pulsos", brand: "Audemars Piguet", ref: "Ref.AP29HEB", desc: "Correa Compatible con Royal Oak Offshore 29mm", price: "$110,000", img: "https://lh3.googleusercontent.com/d/1AIbXWEaCwLU2VI7ojzwyt2Gck--G48qq" },
+  { id: "R00-012", cat: "pulsos", brand: "Bvlgari", ref: "Ref. BVL22", desc: "correa bvlgari 22mm negro con plateado/cobrizo", price: "$110,000", img: "https://lh3.googleusercontent.com/d/1IOHaeMmwhXzOrXpzYsDu6x4-FtFIO26n" },
+  { id: "R00-013", cat: "pulsos", brand: "Bvlgari", ref: "Ref. BVL24", desc: "correa bvlgari 24mm negro con plateado/cobrizo", price: "", img: "https://lh3.googleusercontent.com/d/1IOHaeMmwhXzOrXpzYsDu6x4-FtFIO26n" },
+  { id: "R00-014", cat: "pulsos", brand: "Casio", ref: "Ref. GA-100BR", desc: "Correa original de casio negro brillante", price: "$170,000", img: "https://lh3.googleusercontent.com/d/1Rl_BvkybwFU7HPM1wAd3WmS65RhypwL3" },
+  { id: "R00-015", cat: "pulsos", brand: "Casio", ref: "Ref. GA-150DR", desc: "Correa original casio dorada", price: "$170,000", img: "https://lh3.googleusercontent.com/d/1D9s_odQQYSkGGuV-DexEXoHctcUpNimE" },
+  { id: "R00-016", cat: "pulsos", brand: "Casio Generico", ref: "EF-550", desc: "Correa compatible con casio formula 1", price: "$45,000", img: "https://lh3.googleusercontent.com/d/141DnfoKgTjLAiesgYeePgLCiaeU6_JVT" },
+  { id: "R00-017", cat: "pulsos", brand: "Casio Generico", ref: "GA-100NR", desc: "Correa compatible con casio Ga-100 negra con rojo por debajo", price: "$80,000", img: "https://lh3.googleusercontent.com/d/15iuBCiIAqjxfnIcYJmGPUmAvmhiE5vNC" },
+  { id: "R00-018", cat: "pulsos", brand: "Casio Generico", ref: "PRG-270", desc: "Correa compatible con reloj Casio PRG-270", price: "$70,000", img: "https://lh3.googleusercontent.com/d/1OMAZJBx3l2_BfxsU3-XtlCh2nyAknDuh" },
+  { id: "R00-019", cat: "pulsos", brand: "Casio Generico", ref: "G-9000", desc: "Correa compatible con reloj G-Shock G-9000 Mudman", price: "$80,000", img: "https://lh3.googleusercontent.com/d/1m2_4GyCuNAj5L_gWW3vRDOojroNnuTrl" },
+  { id: "R00-020", cat: "pulsos", brand: "Casio Generico", ref: "EFX-520", desc: "Correa generica Casio EFX-520", price: "$90,000", img: "https://lh3.googleusercontent.com/d/1iBLrDTwbMt9uvNKORuOS1ZYGaJE21Pon" },
 
   // RELOJES
-  { id: "REL-001", cat: "relojes", brand: "Dmario", ref: "Reloj análogo", desc: "Cuerpo en acero", price: "$320,000", img: "https://drive.google.com/uc?export=view&id=1J_02Iysq-sXpg0NbgJceMuVpHYj9nxNE" },
-  { id: "REL-002", cat: "relojes", brand: "Tissot", ref: "Reloj análogo", desc: "Cuerpo metálico", price: "$530,000", img: "https://drive.google.com/uc?export=view&id=1Y0EsJedyATYPu-Za7o5X7rHNGhj8weO0" },
+  { id: "REL-001", cat: "relojes", brand: "Dmario", ref: "Reloj análogo", desc: "Cuerpo en acero", price: "$320,000", img: "https://lh3.googleusercontent.com/d/1J_02Iysq-sXpg0NbgJceMuVpHYj9nxNE" },
+  { id: "REL-002", cat: "relojes", brand: "Tissot", ref: "Reloj análogo", desc: "Cuerpo metálico", price: "$530,000", img: "https://lh3.googleusercontent.com/d/1Y0EsJedyATYPu-Za7o5X7rHNGhj8weO0" },
 
   // ESTUCHES
-  { id: "EST-001", cat: "estuches", brand: "Nacional", ref: "Estuche x 6 relojes", desc: "cuadros cafes · Estuche para organizar y proteger tus relojes. material: Cuero sintetico y vidrio", price: "", img: "https://drive.google.com/uc?export=view&id=1wGAHS3TZk4bD6YEV5Go6wdxq-wgkg8jJ" },
-  { id: "EST-002", cat: "estuches", brand: "Nacional", ref: "Estuche x 6 relojes", desc: "Negro con gris · Estuche para organizar y proteger tus relojes. material: Cuero sintetico y vidrio", price: "", img: "https://drive.google.com/uc?export=view&id=1VR8C55R5dOrBFIU6vdBGPkB3TYlJNDqn" }
+  { id: "EST-001", cat: "estuches", brand: "Nacional", ref: "Estuche x 6 relojes", desc: "cuadros cafes · Estuche para organizar y proteger tus relojes. material: Cuero sintetico y vidrio", price: "", img: "https://lh3.googleusercontent.com/d/1wGAHS3TZk4bD6YEV5Go6wdxq-wgkg8jJ" },
+  { id: "EST-002", cat: "estuches", brand: "Nacional", ref: "Estuche x 6 relojes", desc: "Negro con gris · Estuche para organizar y proteger tus relojes. material: Cuero sintetico y vidrio", price: "", img: "https://lh3.googleusercontent.com/d/1VR8C55R5dOrBFIU6vdBGPkB3TYlJNDqn" }
 ];
 
 let state = { cat: null };
