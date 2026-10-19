@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Relojería 00 · Catálogo de pulsos y correas 2026</title>
+<title>Relojería 00 · Catálogo 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Nunito:wght@400;600;700&display=swap">
@@ -30,24 +30,21 @@ button,input,select,textarea{font:inherit;color:inherit}
 .search{flex:1 1 240px;min-width:0;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:9px 14px}
 .search:focus,select:focus{outline:2px solid var(--blue);outline-offset:1px}
 .filters{max-width:1200px;margin:10px auto 0;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;cursor:pointer;white-space:nowrap;font-size:13px}
-.chip[aria-pressed="true"]{background:var(--blue);color:#fff;border-color:var(--blue)}
 select{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 10px;max-width:100%}
 main{max-width:1200px;margin:0 auto;padding:16px 14px}
 .count{display:flex;align-items:center;gap:12px;font:700 15px var(--title);color:var(--hd);margin:0 0 12px}
 .count::before{content:"";width:34px;height:10px;background:var(--yel);flex:none}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:12px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;content-visibility:auto;contain-intrinsic-size:260px 280px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
 .card .ph{background:#fff;aspect-ratio:5/4;cursor:pointer;display:block;width:100%;border:0;padding:0}
 .card img{width:100%;height:100%;object-fit:contain;display:block}
 .card .bd{padding:9px 10px 10px;display:flex;flex-direction:column;gap:3px;flex:1}
 .code{display:inline-block;background:#17181b;color:var(--yel);border-radius:5px;padding:1px 7px;font-size:12px;font-weight:700;width:max-content}
 .bn{font:700 14px/1.25 var(--title)}
 .ds{color:var(--mute);font-size:12px}
-.price{font-weight:700;color:var(--blue);margin-top:4px}
-.card .btn{margin-top:auto;padding:7px 10px;font-size:13px;border-radius:9px}
+.price{font-weight:700;color:var(--blue);font-size:13px;margin-top:2px}
+.card .btn{margin-top:auto;padding:7px 10px;font-size:13px;border-radius:999px}
 .empty{color:var(--mute);padding:40px 0}
-.more{display:block;margin:18px 0}
 footer{position:relative;overflow:hidden;background:var(--blue);color:#fff;margin-top:20px;padding:calc(var(--lw)*.21) 14px 96px;font-size:13px}
 footer .in{max-width:1200px;margin:0 auto;padding:0 calc(var(--lw)*.21) 0 0}
 footer img{width:calc(var(--lw)*.8);height:auto;display:block;margin-bottom:calc(var(--lw)*.16)}
@@ -69,15 +66,8 @@ footer::after{content:"";position:absolute;right:-34px;bottom:-34px;width:110px;
 .it input[type=text]{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:5px 8px;margin-top:4px;font-size:13px}
 .qty{display:flex;align-items:center;gap:6px}
 .qty button{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:var(--card);cursor:pointer}
-.field{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:8px 10px;margin:10px 0}
-.acts{display:flex;gap:8px;flex-wrap:wrap}
-.acts a.btn{text-decoration:none;display:inline-block}
-.pill{border-radius:999px;padding:3px 11px;font-size:12px;font-weight:700;border:1px solid var(--line);background:var(--card)}.pill.live{color:var(--live);border-color:var(--live)}
-#ovz{padding:0;background:rgba(0,0,0,.95);overflow:hidden;z-index:50;touch-action:none}
-#zi{max-width:100%;max-height:100%;object-fit:contain;background:#fff;user-select:none;-webkit-user-drag:none;cursor:grab;touch-action:none;will-change:transform}
-.zc{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));right:10px;display:flex;gap:8px;z-index:2}
-.zh{position:absolute;left:0;right:0;bottom:calc(12px + env(safe-area-inset-bottom,0px));color:#ddd;font-size:12px;padding:0 14px;pointer-events:none}
 body[data-v="home"] .catonly{display:none!important}
+body[data-v="cat"] #home{display:block}
 body[data-v="cat"] #home{display:none}
 .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
 .tile{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;text-align:left;padding:0;display:flex;flex-direction:column;color:inherit;font:inherit}
@@ -89,24 +79,25 @@ body[data-v="cat"] #home{display:none}
 .tile .tc{color:var(--mute);font-size:13px}
 .vt{font:700 18px var(--title);color:var(--hd)}
 .ph.np{display:flex;align-items:center;justify-content:center;background:var(--line)}.ph.np::after{content:"Foto próximamente";color:var(--mute);font-size:12px}.ph.np img{display:none}
-.panel img.big[src^="data:image/gif"]{background:var(--line)}
-body[data-v="home"] .bar{display:none}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:80px;background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:999px;z-index:60;display:none;font-size:13px}
 </style>
 </head>
 <body data-v="home">
 <div class="banner"><img data-logo="pos" alt="Relojería 00 · Tu tiempo en buenas manos"><img data-logo="neg" alt=""></div>
 <div class="bar">
- <div class="row catonly"><button class="btn" id="back">← Inicio</button><span class="vt" id="vt"></span><input id="q" class="search" type="search" placeholder="Buscar por código, marca o referencia…" aria-label="Buscar"></div>
- <div class="filters catonly" id="cats"></div>
- <div class="filters catonly"><select id="brand" aria-label="Marca"></select><span class="ds" id="info"></span></div>
+ <div class="row catonly"><button class="btn" onclick="goHome()">← Inicio</button><span class="vt" id="vt">Catálogo</span><input id="q" class="search" type="search" placeholder="Buscar por código, marca o referencia…" aria-label="Buscar" oninput="filterAndRender()"></div>
+ <div class="filters catonly"><select id="brand" aria-label="Marca" onchange="filterAndRender()"></select><span class="ds" id="info"></span></div>
 </div>
 <main>
- <section id="home"><p class="count">Elige una categoría</p><div class="tiles" id="tiles"></div></section>
- <p class="count catonly" id="count"></p>
- <div class="grid catonly" id="grid"></div>
- <button class="btn more catonly" id="more" style="display:none">Ver más</button>
- <div class="empty catonly" id="empty" style="display:none">No encontramos referencias con esa búsqueda.</div>
+ <section id="home">
+   <p class="count">Elige una categoría</p>
+   <div class="tiles" id="tiles"></div>
+ </section>
+ <div class="catonly">
+   <p class="count" id="count"></p>
+   <div class="grid" id="grid"></div>
+   <div class="empty" id="empty" style="display:none">No encontramos referencias con esa búsqueda.</div>
+ </div>
 </main>
 <footer>
  <div class="in">
@@ -121,105 +112,262 @@ body[data-v="home"] .bar{display:none}
  </div>
 </footer>
 
-<button class="btn fab" id="fab">Mi pedido · <span id="fabn">0</span></button>
+<button class="btn fab" onclick="toggleOrderModal()">Mi pedido · <span id="fabn">0</span></button>
 
 <div class="ov" id="ovd"><div class="panel" id="detail"></div></div>
 <div class="ov sheet" id="ovo"><div class="panel" id="order"></div></div>
-<div class="ov" id="ovz"><div class="zc"><button class="btn" data-z="out" aria-label="Alejar">−</button><button class="btn" data-z="in" aria-label="Acercar">+</button><button class="btn" data-z="reset">Restablecer</button><button class="btn pri" data-close="ovz">Cerrar</button></div><img id="zi" alt=""><div class="zh">Pellizca o usa la rueda para acercar · arrastra para mover · toca dos veces para ampliar</div></div>
 <div class="toast" id="toast"></div>
 
 <script>
-// Conexión dinámica a Google Sheets (Hoja "Catálogo")
-const SPREADSHEET_ID = '1MkPPuXrkKwV8_MPZa7MvTUwKReXFBnbhquew5K3hA60';
-const SHEET_NAME = 'PULSOS';
-const CSV_URL = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
+const CATS = [
+  { id: "pulsos", name: "Pulsos y Correas", desc: "Silicona, cuero, lona y metálicas", img: "https://drive.google.com/uc?export=view&id=1bAuTGUXRvvNaBT6D0p8dHfGvvg07lYDG" },
+  { id: "relojes", name: "Relojes", desc: "Análogos y digitales", img: "https://drive.google.com/uc?export=view&id=1J_02Iysq-sXpg0NbgJceMuVpHYj9nxNE" },
+  { id: "estuches", name: "Estuches y Accesorios", desc: "Organizadores de cuero y repuestos", img: "https://drive.google.com/uc?export=view&id=19obWEVLueTJW3hRsL3JUl19CUVZsoUV8" }
+];
 
-let catalogData = [];
+const DB = [
+  { id: "R00-001", cat: "pulsos", brand: "Armani", ref: "REF. Ax1042", desc: "Pulso Armani Exchance de plastico", price: "$110,000", img: "https://drive.google.com/uc?export=view&id=1bAuTGUXRvvNaBT6D0p8dHfGvvg07lYDG" },
+  { id: "R00-002", cat: "pulsos", brand: "Armani", ref: "Ref.AXT2006R", desc: "Pulso de silicona, smartwatch o 22mm", price: "$139,000", img: "https://drive.google.com/uc?export=view&id=1GPhVoXNk61QWwctbeVFdnoYPEoCuxBBR" },
+  { id: "R00-003", cat: "pulsos", brand: "Armani", ref: "Ref. AXLona22", desc: "Pulso de cuero lona de 22mm", price: "$110,000", img: "https://drive.google.com/uc?export=view&id=1aPrXhEKQ8hFpurFhPtrvcde7rMG_vp1N" },
+  { id: "R00-004", cat: "pulsos", brand: "Armani", ref: "Ref. AXjean22", desc: "Pulso tipo jean y cuero", price: "$110,000", img: "https://drive.google.com/uc?export=view&id=1INnR8mmrq_mR0uVEKDXIi1JCwPx6_8uw" },
+  { id: "R00-005", cat: "pulsos", brand: "Armani", ref: "Ref.AXCUE18", desc: "Pulso de cuero tamaño 18mm", price: "$110,000", img: "https://drive.google.com/uc?export=view&id=1YXQk2Iz_KObAhAWXf0E0XloWw5FcYZpk" },
+  { id: "R00-006", cat: "pulsos", brand: "Armani", ref: "Ref.AXCUE22", desc: "Pulso de cuero tamaño 22mm", price: "$110,000", img: "https://drive.google.com/uc?export=view&id=1MIBH81HEjJmzzX8ZcaAYbx4KekcHUbm7" },
+  { id: "R00-007", cat: "pulsos", brand: "Armani", ref: "Ref.AXCUE24", desc: "Pulso de cuero tamaño 24mm", price: "$110,000", img: "https://drive.google.com/uc?export=view&id=1O2c4CFo48RXNoQgn_2FNx3sEKZ-YEBWS" },
+  { id: "R00-008", cat: "pulsos", brand: "Audemars Piguet", ref: "Ref. APH114", desc: "Correa compatible AP Royal Oak", price: "$90,000", img: "https://drive.google.com/uc?export=view&id=1Be4iMSn-dxbVRMkZlCYOk0oKHkKfRH3r" },
+  { id: "R00-009", cat: "pulsos", brand: "Audemars Piguet", ref: "Ref. AP27BRO", desc: "Correa compatible con AP Royal Oak Offshore 27mm Broche", price: "$110,000", img: "https://drive.google.com/uc?export=view&id=1zTZW6PdQLoXhX--mRVPC8DrzjuhmIl7g" },
+  { id: "R00-010", cat: "pulsos", brand: "Audemars Piguet", ref: "Ref. APTOR26", desc: "Correa Compatible con reloj AP Oak Oppshore Tornillo 26mm", price: "$115,000", img: "https://drive.google.com/uc?export=view&id=1tf7XNCeQFJ23X9mjAo3p-NXYryVGPFMf" },
+  { id: "R00-011", cat: "pulsos", brand: "Audemars Piguet", ref: "Ref.AP29HEB", desc: "Correa Compatible con Royal Oak Offshore 29mm", price: "$110,000", img: "https://drive.google.com/uc?export=view&id=1AIbXWEaCwLU2VI7ojzwyt2Gck--G48qq" },
+  { id: "R00-012", cat: "pulsos", brand: "Bvlgari", ref: "Ref. BVL22", desc: "correa bvlgari 22mm negro con plateado/cobrizo", price: "$110,000", img: "https://drive.google.com/uc?export=view&id=1IOHaeMmwhXzOrXpzYsDu6x4-FtFIO26n" },
+  { id: "R00-013", cat: "pulsos", brand: "Bvlgari", ref: "Ref. BVL24", desc: "correa bvlgari 24mm negro con plateado/cobrizo", price: "", img: "https://drive.google.com/uc?export=view&id=1IOHaeMmwhXzOrXpzYsDu6x4-FtFIO26n" },
+  { id: "R00-014", cat: "pulsos", brand: "Casio", ref: "Ref. GA-100BR", desc: "Correa original de casio negro brillante", price: "$170,000", img: "https://drive.google.com/uc?export=view&id=1Rl_BvkybwFU7HPM1wAd3WmS65RhypwL3" },
+  { id: "R00-015", cat: "pulsos", brand: "Casio", ref: "Ref. GA-150DR", desc: "Correa original casio dorada", price: "$170,000", img: "https://drive.google.com/uc?export=view&id=1D9s_odQQYSkGGuV-DexEXoHctcUpNimE" },
+  { id: "R00-016", cat: "pulsos", brand: "Casio Generico", ref: "EF-550", desc: "Correa compatible con casio formula 1", price: "$45,000", img: "https://drive.google.com/uc?export=view&id=141DnfoKgTjLAiesgYeePgLCiaeU6_JVT" },
+  { id: "R00-017", cat: "pulsos", brand: "Casio Generico", ref: "GA-100NR", desc: "Correa compatible con casio Ga-100 negra con rojo por debajo", price: "$80,000", img: "https://drive.google.com/uc?export=view&id=15iuBCiIAqjxfnIcYJmGPUmAvmhiE5vNC" },
+  { id: "R00-018", cat: "pulsos", brand: "Casio Generico", ref: "PRG-270", desc: "Correa compatible con reloj Casio PRG-270", price: "$70,000", img: "https://drive.google.com/uc?export=view&id=1OMAZJBx3l2_BfxsU3-XtlCh2nyAknDuh" },
+  { id: "R00-019", cat: "pulsos", brand: "Casio Generico", ref: "G-9000", desc: "Correa compatible con reloj G-Shock G-9000 Mudman", price: "$80,000", img: "https://drive.google.com/uc?export=view&id=1m2_4GyCuNAj5L_gWW3vRDOojroNnuTrl" },
+  { id: "R00-020", cat: "pulsos", brand: "Casio Generico", ref: "EFX-520", desc: "Correa generica Casio EFX-520", price: "$90,000", img: "https://drive.google.com/uc?export=view&id=1iBLrDTwbMt9uvNKORuOS1ZYGaJE21Pon" },
+  { id: "REL-001", cat: "relojes", brand: "Dmario", ref: "Reloj análogo", desc: "Cuerpo en acero", price: "$320,000", img: "https://drive.google.com/uc?export=view&id=1J_02Iysq-sXpg0NbgJceMuVpHYj9nxNE" },
+  { id: "REL-002", cat: "relojes", brand: "Tissot", ref: "Reloj análogo", desc: "Cuerpo metálico", price: "$530,000", img: "https://drive.google.com/uc?export=view&id=1Y0EsJedyATYPu-Za7o5X7rHNGhj8weO0" },
+  { id: "EST-001", cat: "estuches", brand: "Nacional", ref: "Estuche", desc: "Cuero mate x 6", price: "", img: "https://drive.google.com/uc?export=view&id=19obWEVLueTJW3hRsL3JUl19CUVZsoUV8" },
+  { id: "EST-002", cat: "estuches", brand: "Importado", ref: "Estuche", desc: "Cuero x 8", price: "", img: "https://drive.google.com/uc?export=view&id=1ycfIjcjFI7wXLYdK_kdxypbGgdjO1Ash" }
+];
 
-function parseCSV(text) {
-  let lines = text.split('\n');
-  let result = [];
-  for (let line of lines) {
-    let row = [], inQuotes = false, current = '';
-    for (let char of line) {
-      if (char === '"') { inQuotes = !inQuotes; }
-      else if (char === ',' && !inQuotes) { row.push(current.trim()); current = ''; }
-      else { current += char; }
-    }
-    row.push(current.trim());
-    if (row.length > 1) result.push(row);
-  }
-  return result;
+let state = { cat: null };
+let cart = JSON.parse(localStorage.getItem('r00_cart') || '[]');
+
+function saveCart() {
+  localStorage.setItem('r00_cart', JSON.stringify(cart));
+  document.getElementById('fabn').textContent = cart.reduce((a, b) => a + b.qty, 0);
 }
 
-function loadCatalogFromSheets() {
-  fetch(CSV_URL)
-    .then(res => res.text())
-    .then(csvText => {
-      const rows = parseCSV(csvText);
-      const headers = rows[0].map(h => h.replace(/^"|"$/g, ''));
-      catalogData = rows.slice(1).map((row, idx) => {
-        let item = {};
-        headers.forEach((h, i) => {
-          let val = row[i] ? row[i].replace(/^"|"$/g, '') : '';
-          item[h] = val;
-        });
-        return {
-          id: `R00-${String(idx + 1).padStart(3, '0')}`,
-          brand: item['Marca'] || 'Genérico',
-          ref: item['Referencia'] || '',
-          desc: item['Descripción'] || '',
-          price: item['Precio'] || '',
-          img: item['Foto (principal)'] || item['negro'] || item['azul'] || ''
-        };
-      });
-      renderCatalog();
-    })
-    .catch(err => {
-      console.error("Error al cargar la base de datos de Google Sheets:", err);
-    });
+function initTiles() {
+  const container = document.getElementById('tiles');
+  if(!container) return;
+  container.innerHTML = CATS.map(c => `
+    <button class="tile" onclick="selectCat('${c.id}')">
+      <div class="ph"><img src="${c.img}" alt="${c.name}" loading="lazy" onerror="this.parentElement.classList.add('np')"></div>
+      <div class="tb">
+        <span class="tn">${c.name}</span>
+        <span class="tc">${c.desc}</span>
+      </div>
+    </button>
+  `).join('');
 }
 
-function renderCatalog() {
+function selectCat(catId) {
+  state.cat = catId;
+  document.getElementById('q').value = "";
+  document.body.setAttribute('data-v', 'cat');
+  
+  const currentCat = CATS.find(c => c.id === catId);
+  document.getElementById('vt').textContent = currentCat ? currentCat.name : "Catálogo";
+
+  populateBrands();
+  filterAndRender();
+}
+
+function goHome() {
+  document.body.setAttribute('data-v', 'home');
+  state.cat = null;
+}
+
+function populateBrands() {
+  const brandSelect = document.getElementById('brand');
+  const catItems = DB.filter(i => i.cat === state.cat);
+  const brands = [...new Set(catItems.map(i => i.brand))].sort();
+  
+  brandSelect.innerHTML = '<option value="">Todas las marcas</option>' + 
+    brands.map(b => `<option value="${b}">${b}</option>`).join('');
+}
+
+function filterAndRender() {
+  const q = document.getElementById('q').value.toLowerCase();
+  const selectedBrand = document.getElementById('brand').value;
+
+  const filtered = DB.filter(i => {
+    if (i.cat !== state.cat) return false;
+    const matchesQ = i.brand.toLowerCase().includes(q) || 
+                     i.ref.toLowerCase().includes(q) || 
+                     i.desc.toLowerCase().includes(q) || 
+                     i.id.toLowerCase().includes(q);
+    const matchesBrand = selectedBrand === "" || i.brand === selectedBrand;
+    return matchesQ && matchesBrand;
+  });
+
+  renderGrid(filtered);
+}
+
+function renderGrid(items) {
   const grid = document.getElementById('grid');
   const count = document.getElementById('count');
-  if (!grid) return;
-  
-  grid.innerHTML = '';
-  count.textContent = `${catalogData.length} productos disponibles`;
+  const empty = document.getElementById('empty');
 
-  catalogData.forEach(item => {
+  grid.innerHTML = '';
+  count.textContent = `${items.length} productos disponibles`;
+
+  if (items.length === 0) {
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  items.forEach(item => {
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `
-      <div class="ph">
-        <img src="${item.img || 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'}" alt="${item.brand} ${item.ref}" onerror="this.parentElement.classList.add('np')">
-      </div>
+      <button class="ph ${!item.img ? 'np' : ''}" onclick="openDetail('${item.id}')">
+        ${item.img ? `<img src="${item.img}" alt="${item.brand}${item.ref}" loading="lazy" onerror="this.parentElement.classList.add('np')">` : ''}
+      </button>
       <div class="bd">
         <span class="code">${item.id}</span>
         <span class="bn">${item.brand} ${item.ref}</span>
         <span class="ds">${item.desc}</span>
         ${item.price ? `<span class="price">${item.price}</span>` : ''}
-        <button class="btn pri" onclick="addToOrder('${item.id}', '${item.brand} ${item.ref}')">Agregar al pedido</button>
+        <button class="btn pri" onclick="addToCart('${item.id}')">Agregar al pedido</button>
       </div>
     `;
     grid.appendChild(card);
   });
 }
 
-let order = [];
-function addToOrder(id, title) {
-  order.push({id, title});
-  document.getElementById('fabn').textContent = order.length;
+function openDetail(id) {
+  const item = DB.find(i => i.id === id);
+  if (!item) return;
+
+  const detail = document.getElementById('detail');
+  detail.innerHTML = `
+    <button class="btn x" onclick="closeModal('ovd')">✕</button>
+    <h3>${item.brand} ${item.ref}</h3>
+    <p class="code">${item.id}</p>
+    <img class="big ${!item.img ? 'np' : ''}" src="${item.img || ''}" alt="${item.brand}" onclick="openZoom('${item.img}')" onerror="this.classList.add('np')">
+    <p class="ds" style="margin-top:10px">${item.desc}</p>
+    ${item.price ? `<p class="price" style="font-size:16px">${item.price}</p>` : ''}
+    <div class="nav" style="margin-top:14px">
+      <button class="btn pri" style="width:100%" onclick="addToCart('${item.id}');closeModal('ovd')">Agregar al pedido</button>
+    </div>
+  `;
+  document.getElementById('ovd').classList.add('on');
+}
+
+function openZoom(imgUrl) {
+  if (!imgUrl) return;
+  document.getElementById('zi').src = imgUrl;
+  document.getElementById('ovz').classList.add('on');
+}
+
+function closeModal(modalId) {
+  document.getElementById(modalId).classList.remove('on');
+}
+
+function toggleOrderModal() {
+  renderOrderModal();
+  document.getElementById('ovo').classList.toggle('on');
+}
+
+function addToCart(id) {
+  const item = DB.find(i => i.id === id);
+  if (!item) return;
+
+  const existing = cart.find(i => i.id === id);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ id: item.id, brand: item.brand, ref: item.ref, img: item.img, qty: 1, note: "" });
+  }
+  
+  saveCart();
+  showToast(`Agregado: ${item.brand} ${item.ref}`);
+}
+
+function showToast(msg) {
   const toast = document.getElementById('toast');
-  toast.textContent = `Agregado: ${title}`;
+  toast.textContent = msg;
   toast.style.display = 'block';
   setTimeout(() => { toast.style.display = 'none'; }, 2000);
 }
 
+function renderOrderModal() {
+  const order = document.getElementById('order');
+  if (cart.length === 0) {
+    order.innerHTML = `
+      <button class="btn x" onclick="toggleOrderModal()">✕</button>
+      <h3>Mi Pedido</h3>
+      <p class="ds">No has agregado productos a tu lista aún.</p>
+    `;
+    return;
+  }
+
+  order.innerHTML = `
+    <button class="btn x" onclick="toggleOrderModal()">✕</button>
+    <h3>Mi Pedido</h3>
+    ${cart.map((item, idx) => `
+      <div class="it">
+        <img src="${item.img || ''}" alt="" onerror="this.style.display='none'">
+        <div>
+          <strong>${item.id}</strong> - ${item.brand}${item.ref}
+          <input type="text" placeholder="Medida o color (ej: 22mm)..." value="${item.note}" onchange="updateNote(${idx}, this.value)">
+        </div>
+        <div class="qty">
+          <button onclick="changeQty(${idx}, -1)">−</button>
+          <span>${item.qty}</span>
+          <button onclick="changeQty(${idx}, 1)">+</button>
+        </div>
+      </div>
+    `).join('')}
+    <div style="margin-top:16px">
+      <a id="wsBtn" class="btn pri" target="_blank" style="display:block;text-align:center;text-decoration:none">Enviar lista por WhatsApp</a>
+    </div>
+  `;
+
+  updateWsLink();
+}
+
+function updateNote(idx, val) {
+  cart[idx].note = val;
+  saveCart();
+  updateWsLink();
+}
+
+function changeQty(idx, delta) {
+  cart[idx].qty += delta;
+  if (cart[idx].qty <= 0) {
+    cart.splice(idx, 1);
+  }
+  saveCart();
+  renderOrderModal();
+}
+
+function updateWsLink() {
+  const wsBtn = document.getElementById('wsBtn');
+  if (!wsBtn) return;
+  const text = cart.map(i => `- ${i.qty}x ${i.id} ${i.brand} ${i.ref} ${i.note ? `(${i.note})` : ''}`).join('\n');
+  const url = `https://api.whatsapp.com/send?phone=573184000656&text=${encodeURIComponent('Hola, deseo realizar el siguiente pedido:\n\n' + text)}`;
+  wsBtn.href = url;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-  document.body.setAttribute('data-v', 'cat');
-  loadCatalogFromSheets();
+  initTiles();
+  saveCart();
 });
 </script>
 </body>
