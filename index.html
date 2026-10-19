@@ -240,12 +240,13 @@ function renderGrid(items) {
     card.className = 'card';
     card.innerHTML = `
       <button class="ph ${!item.img ? 'np' : ''}" onclick="openDetail('${item.id}')">
-        ${item.img ? `<img src="${item.img}" alt="${item.brand} ${item.ref}" loading="lazy" onerror="this.parentElement.classList.add('np')">` : ''}
+        ${item.img ? `<img src="${item.img}" alt="${item.brand}${item.ref}" loading="lazy" onerror="this.parentElement.classList.add('np')">` : ''}
       </button>
       <div class="bd">
         <span class="code">${item.id}</span>
-        <span class="bn">${item.brand}${item.ref}</span>
-        <span class="ds">${item.desc}</span>${item.price ? `<span class="price">${item.price}</span>` : ''}
+        <span class="bn">${item.brand} ${item.ref}</span>
+        <span class="ds">${item.desc}</span>
+        ${item.price ? `<span class="price">${item.price}</span>` : ''}
         <button class="btn pri" onclick="addToCart('${item.id}')">Agregar al pedido</button>
       </div>
     `;
@@ -260,4 +261,118 @@ function openDetail(id) {
   const detail = document.getElementById('detail');
   detail.innerHTML = `
     <button class="btn x" onclick="closeModal('ovd')">✕</button>
-    <h3>${item.brand}${item.ref}</h3>
+    <h3>${item.brand} ${item.ref}</h3>
+    <p class="code">${item.id}</p>
+    <img class="big ${!item.img ? 'np' : ''}" src="${item.img || ''}" alt="${item.brand}" onclick="openZoom('${item.img}')" onerror="this.classList.add('np')">
+    <p class="ds" style="margin-top:10px">${item.desc}</p>
+    ${item.price ? `<p class="price" style="font-size:16px">${item.price}</p>` : ''}
+    <div class="nav" style="margin-top:14px">
+      <button class="btn pri" style="width:100%" onclick="addToCart('${item.id}');closeModal('ovd')">Agregar al pedido</button>
+    </div>
+  `;
+  document.getElementById('ovd').classList.add('on');
+}
+
+function openZoom(imgUrl) {
+  if (!imgUrl) return;
+  document.getElementById('zi').src = imgUrl;
+  document.getElementById('ovz').classList.add('on');
+}
+
+function closeModal(modalId) {
+  document.getElementById(modalId).classList.remove('on');
+}
+
+function toggleOrderModal() {
+  renderOrderModal();
+  document.getElementById('ovo').classList.toggle('on');
+}
+
+function addToCart(id) {
+  const item = DB.find(i => i.id === id);
+  if (!item) return;
+
+  const existing = cart.find(i => i.id === id);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ id: item.id, brand: item.brand, ref: item.ref, img: item.img, qty: 1, note: "" });
+  }
+  
+  saveCart();
+  showToast(`Agregado: ${item.brand} ${item.ref}`);
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.style.display = 'block';
+  setTimeout(() => { toast.style.display = 'none'; }, 2000);
+}
+
+function renderOrderModal() {
+  const order = document.getElementById('order');
+  if (cart.length === 0) {
+    order.innerHTML = `
+      <button class="btn x" onclick="toggleOrderModal()">✕</button>
+      <h3>Mi Pedido</h3>
+      <p class="ds">No has agregado productos a tu lista aún.</p>
+    `;
+    return;
+  }
+
+  order.innerHTML = `
+    <button class="btn x" onclick="toggleOrderModal()">✕</button>
+    <h3>Mi Pedido</h3>
+    ${cart.map((item, idx) => `
+      <div class="it">
+        <img src="${item.img || ''}" alt="" onerror="this.style.display='none'">
+        <div>
+          <strong>${item.id}</strong> - ${item.brand}${item.ref}
+          <input type="text" placeholder="Medida o color (ej: 22mm)..." value="${item.note}" onchange="updateNote(${idx}, this.value)">
+        </div>
+        <div class="qty">
+          <button onclick="changeQty(${idx}, -1)">−</button>
+          <span>${item.qty}</span>
+          <button onclick="changeQty(${idx}, 1)">+</button>
+        </div>
+      </div>
+    `).join('')}
+    <div style="margin-top:16px">
+      <a id="wsBtn" class="btn pri" target="_blank" style="display:block;text-align:center;text-decoration:none">Enviar lista por WhatsApp</a>
+    </div>
+  `;
+
+  updateWsLink();
+}
+
+function updateNote(idx, val) {
+  cart[idx].note = val;
+  saveCart();
+  updateWsLink();
+}
+
+function changeQty(idx, delta) {
+  cart[idx].qty += delta;
+  if (cart[idx].qty <= 0) {
+    cart.splice(idx, 1);
+  }
+  saveCart();
+  renderOrderModal();
+}
+
+function updateWsLink() {
+  const wsBtn = document.getElementById('wsBtn');
+  if (!wsBtn) return;
+  const text = cart.map(i => `- ${i.qty}x ${i.id} ${i.brand} ${i.ref} ${i.note ? `(${i.note})` : ''}`).join('\n');
+  const url = `https://api.whatsapp.com/send?phone=573184000656&text=${encodeURIComponent('Hola, deseo realizar el siguiente pedido:\n\n' + text)}`;
+  wsBtn.href = url;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initTiles();
+  saveCart();
+});
+</script>
+</body>
+</html>
