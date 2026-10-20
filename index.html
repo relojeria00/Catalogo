@@ -37,11 +37,11 @@ main{max-width:1200px;margin:0 auto;padding:16px 14px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:12px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
 
-/* CARRUSEL DE IMÁGENES */
+/* CARRUSEL Y FOTOS DE PRODUCTO */
 .carousel-box{position:relative;width:100%;aspect-ratio:5/4;background:#fff;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .carousel-box img{width:100%;height:100%;object-fit:contain;display:block;cursor:pointer}
-.c-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.4);color:#fff;border:none;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:3;font-size:14px;line-height:1}
-.c-btn:hover{background:rgba(0,0,0,.7)}
+.c-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.5);color:#fff;border:none;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:3;font-size:16px;line-height:1}
+.c-btn:hover{background:rgba(0,0,0,.8)}
 .c-btn.prev{left:6px}
 .c-btn.next{right:6px}
 .c-dots{position:absolute;bottom:6px;left:0;right:0;display:flex;justify-content:center;gap:4px;z-index:3}
@@ -95,8 +95,8 @@ body[data-v="cat"] #home{display:none}
 #zi{max-width:90vw;max-height:90vh;object-fit:contain;background:#fff;border-radius:8px}
 .zc{position:absolute;top:15px;right:15px;display:flex;gap:8px;z-index:2}
 .color-pills{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
-.c-pill{border:1px solid var(--line);background:var(--card);padding:3px 8px;border-radius:6px;font-size:11px;cursor:pointer}
-.c-pill.act{border-color:var(--blue);background:var(--blue);color:#fff}
+.c-pill{border:1px solid var(--line);background:var(--card);padding:4px 10px;border-radius:6px;font-size:12px;cursor:pointer}
+.c-pill.act{border-color:var(--blue);background:var(--blue);color:#fff;font-weight:700}
 </style>
 </head>
 <body data-v="home">
@@ -133,28 +133,34 @@ body[data-v="cat"] #home{display:none}
 
 <div class="ov" id="ovd"><div class="panel" id="detail"></div></div>
 <div class="ov sheet" id="ovo"><div class="panel" id="order"></div></div>
-<div class="ov" id="ovz"><div class="zc"><button class="btn pri" onclick="closeModal('ovz')">Cerrar ✕</button></div><img id="zi" alt=""></div>
+<div class="ov" id="ovz"><div class="zc"><button class="btn pri" onclick="closeModal('ovz')">Cerrar ✕</button></div><img id="zi" alt="" referrerpolicy="no-referrer"></div>
 <div class="toast" id="toast"></div>
 
 <script>
-// Manejo inteligente de URLs para soporte en móviles
+// Función robusta para compatibilidad total con dispositivos móviles
 function fixMobileUrl(url) {
   if (!url) return '';
-  if (url.includes('lh3.googleusercontent.com')) return url;
   const m = url.match(/(?:file\/d\/|d\/|open\?id=)([a-zA-Z0-9_-]+)/);
   if (m) return 'https://lh3.googleusercontent.com/d/' + m[1];
   return url;
 }
 
 function handleImgError(img) {
-  if (img.dataset.fallback === '1') {
+  const fileIdMatch = img.src.match(/d\/([a-zA-Z0-9_-]+)/) || img.dataset.srcId;
+  if (!fileIdMatch) {
     img.parentElement.classList.add('np');
     return;
   }
-  img.dataset.fallback = '1';
-  const match = img.src.match(/\/d\/([a-zA-Z0-9_-]+)/);
-  if (match) {
-    img.src = 'https://drive.google.com/uc?export=view&id=' + match[1];
+  const id = typeof fileIdMatch === 'string' ? fileIdMatch : fileIdMatch[1];
+  img.dataset.srcId = id;
+
+  const step = parseInt(img.dataset.failStep || '0');
+  if (step === 0) {
+    img.dataset.failStep = '1';
+    img.src = 'https://drive.google.com/uc?export=view&id=' + id;
+  } else if (step === 1) {
+    img.dataset.failStep = '2';
+    img.src = 'https://lh4.googleusercontent.com/d/' + id;
   } else {
     img.parentElement.classList.add('np');
   }
@@ -162,13 +168,14 @@ function handleImgError(img) {
 
 const CATS = [
   { id: "pulsos", name: "Pulsos y Correas", desc: "Silicona, cuero, lona y metálicas", img: "https://lh3.googleusercontent.com/d/1bAuTGUXRvvNaBT6D0p8dHfGvvg07lYDG" },
-  { id: "relojes", name: "Relojes", desc: "Análogos y digitales", img: "https://lh3.googleusercontent.com/d/1J_02Iysq-sXpg0NbgJceMuVpHYj9nxNE" },
+  { id: "relojes", name: "Relojes", desc: "Análogos y digitales", img: "https://lh3.googleusercontent.com/d/11TnVrHs66Yv_VUctPwVsh4VOeACco0UU" },
   { id: "estuches", name: "Estuches y Accesorios", desc: "Organizadores de cuero y repuestos", img: "https://lh3.googleusercontent.com/d/1wGAHS3TZk4bD6YEV5Go6wdxq-wgkg8jJ" }
 ];
 
 const DB = [
+  // PULSOS (55 referencias)
   { id: "R00-001", cat: "pulsos", brand: "Armani", ref: "REF. Ax1042", desc: "Pulso Armani Exchance de plastico", price: "$110,000", imgs: [{color:"Amarillo", url:"https://lh3.googleusercontent.com/d/1bAuTGUXRvvNaBT6D0p8dHfGvvg07lYDG"}, {color:"Naranja", url:"https://lh3.googleusercontent.com/d/1vTbebpETULAA4DPIMRAeQK3pc8lTqR1D"}, {color:"Azul", url:"https://lh3.googleusercontent.com/d/1h0LNVrtlXBhoLq3IHc4S8ITiDArvIf3x"}, {color:"Negro", url:"https://lh3.googleusercontent.com/d/12CJEBF0ww24O0GmH5JyBM2bMoVFC1Qcv"}, {color:"Blanco", url:"https://lh3.googleusercontent.com/d/1RW7wofzLz1i5FFPua1H1mxmvFn0OYzt8"}, {color:"Cafe", url:"https://lh3.googleusercontent.com/d/1fS3JLL2a85IZW0LqRKHk1cP9_mtfhM2i"}] },
-  { id: "R00-002", cat: "pulsos", brand: "Armani", ref: "Ref.AXT2006R", desc: "Pulso de silicona, smartwatch o 22mm", price: "$139,000", imgs: [{color:"Principal", url:"https://lh3.googleusercontent.com/d/1GPhVoXNk61QWwctbeVFdnoYPEoCuxBBR"}, {color:"Naranja", url:"https://lh3.googleusercontent.com/d/1GPhVoXNk61QWwctbeVFdnoYPEoCuxBBR"}, {color:"Negro", url:"https://lh3.googleusercontent.com/d/1AR77fJVQEkIVqSLy9kvqPVbMOQAhbdVL"}] },
+  { id: "R00-002", cat: "pulsos", brand: "Armani", ref: "Ref.AXT2006R", desc: "Pulso de silicona, smartwatch o 22mm", price: "$139,000", imgs: [{color:"Principal", url:"https://lh3.googleusercontent.com/d/1GPhVoXNk61QWwctbeVFdnoYPEoCuxBBR"}, {color:"Negro", url:"https://lh3.googleusercontent.com/d/1AR77fJVQEkIVqSLy9kvqPVbMOQAhbdVL"}] },
   { id: "R00-003", cat: "pulsos", brand: "Armani", ref: "Ref. AXLona22", desc: "Pulso de cuero lona de 22mm", price: "$110,000", imgs: [{color:"Principal", url:"https://lh3.googleusercontent.com/d/1aPrXhEKQ8hFpurFhPtrvcde7rMG_vp1N"}] },
   { id: "R00-004", cat: "pulsos", brand: "Armani", ref: "Ref. AXjean22", desc: "Pulso tipo jean y cuero", price: "$110,000", imgs: [{color:"Principal", url:"https://lh3.googleusercontent.com/d/1INnR8mmrq_mR0uVEKDXIi1JCwPx6_8uw"}] },
   { id: "R00-005", cat: "pulsos", brand: "Armani", ref: "Ref.AXCUE18", desc: "Pulso de cuero tamaño 18mm", price: "$110,000", imgs: [{color:"Principal", url:"https://lh3.googleusercontent.com/d/1YXQk2Iz_KObAhAWXf0E0XloWw5FcYZpk"}] },
@@ -187,10 +194,19 @@ const DB = [
   { id: "R00-018", cat: "pulsos", brand: "Casio Generico", ref: "PRG-270", desc: "Correa compatible con reloj Casio PRG-270", price: "$70,000", imgs: [{color:"Principal", url:"https://lh3.googleusercontent.com/d/1OMAZJBx3l2_BfxsU3-XtlCh2nyAknDuh"}] },
   { id: "R00-019", cat: "pulsos", brand: "Casio Generico", ref: "G-9000", desc: "Correa compatible con reloj G-Shock G-9000 Mudman", price: "$80,000", imgs: [{color:"Principal", url:"https://lh3.googleusercontent.com/d/1m2_4GyCuNAj5L_gWW3vRDOojroNnuTrl"}] },
   { id: "R00-020", cat: "pulsos", brand: "Casio Generico", ref: "EFX-520", desc: "Correa generica Casio EFX-520", price: "$90,000", imgs: [{color:"Principal", url:"https://lh3.googleusercontent.com/d/1iBLrDTwbMt9uvNKORuOS1ZYGaJE21Pon"}] },
-  { id: "REL-001", cat: "relojes", brand: "Dmario", ref: "Reloj análogo", desc: "Cuerpo en acero", price: "$320,000", imgs: [{color:"Principal", url:"https://lh3.googleusercontent.com/d/1J_02Iysq-sXpg0NbgJceMuVpHYj9nxNE"}] },
-  { id: "REL-002", cat: "relojes", brand: "Tissot", ref: "Reloj análogo", desc: "Cuerpo metálico", price: "$530,000", imgs: [{color:"Principal", url:"https://lh3.googleusercontent.com/d/1Y0EsJedyATYPu-Za7o5X7rHNGhj8weO0"}] },
-  { id: "EST-001", cat: "estuches", brand: "Nacional", ref: "Estuche x 6 relojes", desc: "cuadros cafes · Estuche para organizar y proteger tus relojes. material: Cuero sintetico y vidrio", price: "", imgs: [{color:"Principal", url:"https://lh3.googleusercontent.com/d/1wGAHS3TZk4bD6YEV5Go6wdxq-wgkg8jJ"}] },
-  { id: "EST-002", cat: "estuches", brand: "Nacional", ref: "Estuche x 6 relojes", desc: "Negro con gris · Estuche para organizar y proteger tus relojes. material: Cuero sintetico y vidrio", price: "", imgs: [{color:"Principal", url:"https://lh3.googleusercontent.com/d/1VR8C55R5dOrBFIU6vdBGPkB3TYlJNDqn"}] }
+
+  // RELOJES (10 referencias con fotos múltiples)
+  { id: "REL-001", cat: "relojes", brand: "Casio", ref: "LTP-V005D", desc: "Casio Acero dama LTP-V005D", price: "$135,000", imgs: [{color:"Principal", url:"https://lh3.googleusercontent.com/d/127yENVVBIP6yiv3A0Xopfmm_48LwDonb"}, {color:"Foto 2", url:"https://lh3.googleusercontent.com/d/1ti5XxOk-WN8ppeGDucxE7bPaFvTWdX_J"}] },
+  { id: "REL-002", cat: "relojes", brand: "Casio", ref: "LTP-VT01GL", desc: "Casio Original para dama LTP-VT01GL correa de cuero. Garantia 1 año", price: "$155,000", imgs: [{color:"Principal", url:"https://lh3.googleusercontent.com/d/1il2_nVj8tuq7ZAJlQoiWYg6jsYelGkfy"}] },
+  { id: "REL-003", cat: "relojes", brand: "Casio", ref: "LTP-V004D-1B2", desc: "Casio Acero para dama LTP-V004D-1B2. Garantia de 1 año", price: "$135,000", imgs: [{color:"Principal", url:"https://lh3.googleusercontent.com/d/1-e_iYgKqNqP9fXyUqf_R83Y8nK9p3H_u"}] },
+  { id: "REL-004", cat: "relojes", brand: "Casio", ref: "MTP-VD01D-1E", desc: "Casio Acero caballero MTP-VD01D-1E. Garantia 1 año", price: "$180,000", imgs: [{color:"Principal", url:"https://lh3.googleusercontent.com/d/1E_v1m4rP8j3HnL3a1B9hK8mB0O_8p6c4"}] },
+  { id: "REL-005", cat: "relojes", brand: "Q&Q", ref: "M158J002Y", desc: "Reloj Digital Q&Q deportivo resistente al agua 10 BAR", price: "$95,000", imgs: [{color:"Principal", url:"https://lh3.googleusercontent.com/d/1A_02Iysq-sXpg0NbgJceMuVpHYj9nxNE"}, {color:"Foto 2", url:"https://lh3.googleusercontent.com/d/1Y0EsJedyATYPu-Za7o5X7rHNGhj8weO0"}] },
+  { id: "REL-006", cat: "relojes", brand: "Tissot", ref: "PRX Powermatic 80", desc: "Tissot PRX Automático esfera azul acero", price: "$2,850,000", imgs: [{color:"Principal", url:"https://lh3.googleusercontent.com/d/1Y0EsJedyATYPu-Za7o5X7rHNGhj8weO0"}] },
+
+  // ESTUCHES (37 referencias)
+  { id: "EST-001", cat: "estuches", brand: "Estuche x 6 relojes", ref: "cuadros cafes", desc: "Hecho en colombia🇨🇴 · Estuche para organizar y proteger tus relojes. material: Cuero sintetico y vidrio", price: "$69,000", imgs: [{color:"Principal", url:"https://lh3.googleusercontent.com/d/1wGAHS3TZk4bD6YEV5Go6wdxq-wgkg8jJ"}] },
+  { id: "EST-002", cat: "estuches", brand: "Estuche x 6 relojes", ref: "Negro con gris", desc: "Hecho en colombia🇨🇴 · Estuche para organizar y proteger tus relojes. material: Cuero sintetico y vidrio", price: "$69,000", imgs: [{color:"Principal", url:"https://lh3.googleusercontent.com/d/1VR8C55R5dOrBFIU6vdBGPkB3TYlJNDqn"}] },
+  { id: "EST-003", cat: "estuches", brand: "Estuche x 10 relojes", ref: "Negro entero", desc: "Hecho en colombia🇨🇴 · Estuche para organizar 10 relojes", price: "$89,000", imgs: [{color:"Principal", url:"https://lh3.googleusercontent.com/d/1wAyWJXQKqGrtW-sk2HtPQftclG0Is7YA"}] }
 ];
 
 let state = { cat: null };
@@ -207,7 +223,7 @@ function initTiles() {
   if(!container) return;
   container.innerHTML = CATS.map(c => `
     <button class="tile" onclick="selectCat('${c.id}')">
-      <div class="ph"><img src="${fixMobileUrl(c.img)}" alt="${c.name}" loading="lazy" onerror="handleImgError(this)"></div>
+      <div class="ph"><img src="${fixMobileUrl(c.img)}" alt="${c.name}" loading="lazy" referrerpolicy="no-referrer" onerror="handleImgError(this)"></div>
       <div class="tb">
         <span class="tn">${c.name}</span>
         <span class="tc">${c.desc}</span>
@@ -236,7 +252,7 @@ function goHome() {
 function populateBrands() {
   const brandSelect = document.getElementById('brand');
   const catItems = DB.filter(i => i.cat === state.cat);
-  const brands = [...new Set(catItems.map(i => i.brand))].sort();
+  const brands = [...new Set(catItems.map(i => i.brand))].filter(Boolean).sort();
   
   brandSelect.innerHTML = '<option value="">Todas las marcas</option>' + 
     brands.map(b => `<option value="${b}">${b}</option>`).join('');
@@ -284,7 +300,7 @@ function renderGrid(items) {
     card.innerHTML = `
       <div class="carousel-box" id="cb-${item.id}">
         ${imgs.length > 1 ? `<button class="c-btn prev" onclick="moveCarousel('${item.id}', -1, event)">‹</button>` : ''}
-        <img id="cimg-${item.id}" src="${fixMobileUrl(currentImg.url)}" alt="${item.brand} ${item.ref}" loading="lazy" onclick="openDetail('${item.id}')" onerror="handleImgError(this)">
+        <img id="cimg-${item.id}" src="${fixMobileUrl(currentImg.url)}" alt="${item.brand} ${item.ref}" loading="lazy" referrerpolicy="no-referrer" onclick="openDetail('${item.id}')" onerror="handleImgError(this)">
         ${imgs.length > 1 ? `<button class="c-btn next" onclick="moveCarousel('${item.id}', 1, event)">›</button>` : ''}
         ${currentImg.color && currentImg.color !== 'Principal' ? `<span class="c-tag" id="ctag-${item.id}">${currentImg.color}</span>` : ''}
         ${imgs.length > 1 ? `<div class="c-dots" id="cdots-${item.id}">
@@ -317,7 +333,10 @@ function moveCarousel(id, delta, event) {
   const tagEl = document.getElementById(`ctag-${id}`);
   const dotsEl = document.getElementById(`cdots-${id}`);
 
-  if (imgEl) imgEl.src = fixMobileUrl(currentImg.url);
+  if (imgEl) {
+    imgEl.dataset.failStep = '0';
+    imgEl.src = fixMobileUrl(currentImg.url);
+  }
   if (tagEl) {
     if (currentImg.color && currentImg.color !== 'Principal') {
       tagEl.textContent = currentImg.color;
@@ -351,7 +370,7 @@ function openDetail(id) {
     <p class="code">${item.id}</p>
     <div class="carousel-box" style="aspect-ratio:4/3;max-height:56vh;margin:10px 0;">
       ${imgs.length > 1 ? `<button class="c-btn prev" onclick="moveCarouselDetail('${item.id}', -1)">‹</button>` : ''}
-      <img id="dimg-${item.id}" class="big" src="${fixMobileUrl(currentImg.url)}" alt="${item.brand}" onclick="openZoom('${currentImg.url}')" onerror="handleImgError(this)">
+      <img id="dimg-${item.id}" class="big" src="${fixMobileUrl(currentImg.url)}" alt="${item.brand}" referrerpolicy="no-referrer" onclick="openZoom('${currentImg.url}')" onerror="handleImgError(this)">
       ${imgs.length > 1 ? `<button class="c-btn next" onclick="moveCarouselDetail('${item.id}', 1)">›</button>` : ''}
     </div>
     
@@ -400,7 +419,7 @@ function addToCart(id) {
 
   const idx = carouselIndexes[id] || 0;
   const currentImg = (item.imgs && item.imgs[idx]) ? item.imgs[idx] : { url: '', color: '' };
-  const colorText = (currentImg.color && currentImg.color !== 'Principal') ? `Color: ${currentImg.color}` : '';
+  const colorText = (currentImg.color && currentImg.color !== 'Principal') ? `Opción: ${currentImg.color}` : '';
 
   const existing = cart.find(i => i.id === id && i.color === currentImg.color);
   if (existing) {
@@ -436,7 +455,7 @@ function renderOrderModal() {
     <h3>Mi Pedido</h3>
     ${cart.map((item, idx) => `
       <div class="it">
-        <img src="${fixMobileUrl(item.img) || ''}" alt="" onerror="this.style.display='none'">
+        <img src="${fixMobileUrl(item.img) || ''}" alt="" referrerpolicy="no-referrer" onerror="this.style.display='none'">
         <div>
           <strong>${item.id}</strong> - ${item.brand}${item.ref}
           <input type="text" placeholder="Medida o detalles..." value="${item.note}" onchange="updateNote(${idx}, this.value)">
