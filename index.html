@@ -137,28 +137,40 @@ body[data-v="cat"] #home{display:none}
 
 <script src="db_data.js"></script>
 <script>
-function fixMobileUrl(url) {
+function extractDriveId(url) {
   if (!url) return '';
   const m = url.match(/(?:file\/d\/|d\/|open\?id=)([a-zA-Z0-9_-]+)/);
-  if (m) return 'https://lh3.googleusercontent.com/d/' + m[1];
-  return url;
+  return m ? m[1] : '';
+}
+
+function fixMobileUrl(url) {
+  if (!url) return '';
+  const id = extractDriveId(url);
+  if (!id) return url;
+  return 'https://drive.google.com/thumbnail?id=' + id + '&sz=s1000';
 }
 
 function handleImgError(img) {
-  const fileIdMatch = img.src.match(/d\/([a-zA-Z0-9_-]+)/) || img.dataset.srcId;
-  if (!fileIdMatch) {
+  let id = img.dataset.srcId;
+  if (!id) {
+    id = extractDriveId(img.src) || extractDriveId(img.dataset.originalUrl || '');
+    if (id) img.dataset.srcId = id;
+  }
+  
+  if (!id) {
     img.parentElement.classList.add('np');
     return;
   }
-  const id = typeof fileIdMatch === 'string' ? fileIdMatch : fileIdMatch[1];
-  img.dataset.srcId = id;
 
   const step = parseInt(img.dataset.failStep || '0');
   if (step === 0) {
     img.dataset.failStep = '1';
-    img.src = 'https://drive.google.com/uc?export=view&id=' + id;
+    img.src = 'https://lh3.googleusercontent.com/d/' + id;
   } else if (step === 1) {
     img.dataset.failStep = '2';
+    img.src = 'https://drive.google.com/uc?export=view&id=' + id;
+  } else if (step === 2) {
+    img.dataset.failStep = '3';
     img.src = 'https://lh4.googleusercontent.com/d/' + id;
   } else {
     img.parentElement.classList.add('np');
@@ -185,7 +197,7 @@ function initTiles() {
   if(!container) return;
   container.innerHTML = CATS.map(c => `
     <button class="tile" onclick="selectCat('${c.id}')">
-      <div class="ph"><img src="${fixMobileUrl(c.img)}" alt="${c.name}" loading="lazy" referrerpolicy="no-referrer" onerror="handleImgError(this)"></div>
+      <div class="ph"><img src="${fixMobileUrl(c.img)}" data-original-url="${c.img}" alt="${c.name}" loading="lazy" referrerpolicy="no-referrer" onerror="handleImgError(this)"></div>
       <div class="tb">
         <span class="tn">${c.name}</span>
         <span class="tc">${c.desc}</span>
@@ -262,7 +274,7 @@ function renderGrid(items) {
     card.innerHTML = `
       <div class="carousel-box" id="cb-${item.id}">
         ${imgs.length > 1 ? `<button class="c-btn prev" onclick="moveCarousel('${item.id}', -1, event)">‹</button>` : ''}
-        <img id="cimg-${item.id}" src="${fixMobileUrl(currentImg.url)}" alt="${item.brand} ${item.ref}" loading="lazy" referrerpolicy="no-referrer" onclick="openDetail('${item.id}')" onerror="handleImgError(this)">
+        <img id="cimg-${item.id}" src="${fixMobileUrl(currentImg.url)}" data-original-url="${currentImg.url}" alt="${item.brand} ${item.ref}" loading="lazy" referrerpolicy="no-referrer" onclick="openDetail('${item.id}')" onerror="handleImgError(this)">
         ${imgs.length > 1 ? `<button class="c-btn next" onclick="moveCarousel('${item.id}', 1, event)">›</button>` : ''}
         ${currentImg.color && currentImg.color !== 'Principal' ? `<span class="c-tag" id="ctag-${item.id}">${currentImg.color}</span>` : ''}
         ${imgs.length > 1 ? `<div class="c-dots" id="cdots-${item.id}">
@@ -297,6 +309,7 @@ function moveCarousel(id, delta, event) {
 
   if (imgEl) {
     imgEl.dataset.failStep = '0';
+    imgEl.dataset.originalUrl = currentImg.url;
     imgEl.src = fixMobileUrl(currentImg.url);
   }
   if (tagEl) {
@@ -332,7 +345,7 @@ function openDetail(id) {
     <p class="code">${item.id}</p>
     <div class="carousel-box" style="aspect-ratio:4/3;max-height:56vh;margin:10px 0;">
       ${imgs.length > 1 ? `<button class="c-btn prev" onclick="moveCarouselDetail('${item.id}', -1)">‹</button>` : ''}
-      <img id="dimg-${item.id}" class="big" src="${fixMobileUrl(currentImg.url)}" alt="${item.brand}" referrerpolicy="no-referrer" onclick="openZoom('${currentImg.url}')" onerror="handleImgError(this)">
+      <img id="dimg-${item.id}" class="big" src="${fixMobileUrl(currentImg.url)}" data-original-url="${currentImg.url}" alt="${item.brand}" referrerpolicy="no-referrer" onclick="openZoom('${currentImg.url}')" onerror="handleImgError(this)">
       ${imgs.length > 1 ? `<button class="c-btn next" onclick="moveCarouselDetail('${item.id}', 1)">›</button>` : ''}
     </div>
     
