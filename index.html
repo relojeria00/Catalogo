@@ -37,7 +37,6 @@ main{max-width:1200px;margin:0 auto;padding:16px 14px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:12px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
 
-/* Carrusel y cajas optimizadas estrictamente en formato vertical 3:4 */
 .carousel-box{position:relative;width:100%;aspect-ratio:3/4;background:#fff;overflow:hidden;display:flex;align-items:center;justify-content:center}
 .carousel-box img{width:100%;height:100%;object-fit:contain;display:block;cursor:pointer}
 .c-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.5);color:#fff;border:none;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:3;font-size:16px;line-height:1}
@@ -81,7 +80,6 @@ body[data-v="home"] .catonly{display:none!important}
 body[data-v="cat"] #home{display:block}
 body[data-v="cat"] #home{display:none}
 
-/* Tarjetas de categorías en la página de inicio adaptadas a formato 3:4 con animación elegante */
 .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
 .tile{
   background:var(--card);
@@ -502,7 +500,7 @@ function changeQty(idx, delta) {
   renderOrderModal();
 }
 
-def updateWsLink() {
+function updateWsLink() {
   const wsBtn = document.getElementById('wsBtn');
   if (!wsBtn) return;
   const text = cart.map(i => `- ${i.qty}x ${i.id} ${i.brand} ${i.ref} ${i.note ? `(${i.note})` : ''}`).join('\n');
