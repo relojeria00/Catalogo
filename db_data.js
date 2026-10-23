@@ -1208,24 +1208,6 @@ const DB = [
     ]
   },
   {
-    "id": "R00-065",
-    "cat": "pulsos",
-    "brand": "Nautica",
-    "ref": "",
-    "desc": "",
-    "price": "",
-    "imgs": []
-  },
-  {
-    "id": "R00-066",
-    "cat": "pulsos",
-    "brand": "Nautica",
-    "ref": "",
-    "desc": "",
-    "price": "",
-    "imgs": []
-  },
-  {
     "id": "R00-REL-001",
     "cat": "relojes",
     "brand": "Casio",
