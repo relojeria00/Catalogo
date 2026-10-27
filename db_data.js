@@ -3640,7 +3640,7 @@ const DB = [
   },
   {
     "id": "R00-REP-001",
-    "cat": "estuches",
+    "cat": "repuestos",
     "brand": "Tissot",
     "ref": "Tornillo Tissot Trace",
     "desc": "",
